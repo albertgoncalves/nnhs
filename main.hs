@@ -21,11 +21,11 @@ initWeights seed n m = mat / sqrt n'
 initZeros :: Int -> Matrix Double
 initZeros n = matrix n $ replicate n 0.0
 
-initModel :: Int -> Int -> Int -> Model
-initModel nInput nHidden nOutput = Model w1 w2 b1 b2
+initModel :: Seed -> Int -> Int -> Int -> Model
+initModel a nInput nHidden nOutput = Model w1 w2 b1 b2
   where
-    w1 = initWeights 1 nInput nHidden
-    w2 = initWeights 2 nHidden nOutput
+    w1 = initWeights a nInput nHidden
+    w2 = initWeights (a + 1) nHidden nOutput
     b1 = initZeros nHidden
     b2 = initZeros nOutput
 
@@ -117,8 +117,8 @@ main = do
     let nOutput = length $ nub trainY
     let regLambda = 0.01
     let epsilon = 0.01
-    let n = 1000
-    let model = initModel nInput nHidden nOutput
+    let n = 100
+    let model = initModel 100 nInput nHidden nOutput
     let model' = train n model trainX' trainY regLambda epsilon
     dispList 3 $ model2List model'
     let (p, _) = fwdProp model' testX'
