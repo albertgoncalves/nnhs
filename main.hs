@@ -123,4 +123,4 @@ main = do
     dispList 3 $ model2List model'
     let (p, _) = fwdProp model' testX'
     disp 3 p
-    mapM_ print [fmap maxIndex (toRows p), testY]
+    mapM_ print [rowMax p, testY]
