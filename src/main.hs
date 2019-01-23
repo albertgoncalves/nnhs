@@ -59,6 +59,7 @@ main = do
                 n
                 (initModel s nInput nHidden nOutput)
                 (fromLists trainX)
+                nOutput
                 trainY
                 regLambda
                 epsilon

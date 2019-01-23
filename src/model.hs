@@ -31,16 +31,17 @@ trainModel ::
        Int
     -> (Matrix Double, Matrix Double, Matrix Double, Matrix Double)
     -> Matrix Double
+    -> Int
     -> [Int]
     -> Double
     -> Double
     -> (Matrix Double, Matrix Double, Matrix Double, Matrix Double)
-trainModel n model trainX trainY regLambda epsilon
-    | n > 0 = trainModel (n - 1) model' trainX trainY regLambda epsilon
+trainModel n model trainX nOutput trainY regLambda epsilon
+    | n > 0 = trainModel (n - 1) model' trainX nOutput trainY regLambda epsilon
     | otherwise = model'
   where
     model' =
-        backProp model trainX trainY (fwdProp model trainX) regLambda epsilon
+        backProp model trainX nOutput trainY (fwdProp model trainX) regLambda epsilon
 
 predict ::
        (Matrix Double, Matrix Double, Matrix Double, Matrix Double)

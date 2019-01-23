@@ -19,14 +19,16 @@ fwdProp (w1, w2, b1, b2) trainX = (probs, a1)
 backProp ::
        (Matrix Double, Matrix Double, Matrix Double, Matrix Double)
     -> Matrix Double
+    -> Int
     -> [Int]
     -> (Matrix Double, Matrix Double)
     -> Double
     -> Double
     -> (Matrix Double, Matrix Double, Matrix Double, Matrix Double)
-backProp (w1, w2, b1, b2) trainX trainY (probs, a1) regLambda epsilon = model
+backProp (w1, w2, b1, b2) trainX nOutput trainY (probs, a1) regLambda epsilon =
+    model
   where
-    delta3 = correction probs trainY
+    delta3 = correction probs nOutput trainY
     dw2 = tr a1 <> delta3
     db2 = sumCols delta3
     delta2 = (delta3 <> tr w2) * (1 - (a1 ** 2))
@@ -42,11 +44,18 @@ backProp (w1, w2, b1, b2) trainX trainY (probs, a1) regLambda epsilon = model
     b2' = fEpsilon b2 db2
     model = (w1', w2', b1', b2')
 
-correction :: Matrix Double -> [Int] -> Matrix Double
-correction p y = p + fromLists (map mask y)
+correction :: Matrix Double -> Int -> [Int] -> Matrix Double
+correction p n y = p + fromLists (map (mask n) y)
+
+mask :: Int -> Int -> [Double]
+mask n i = f n (i + 1) []
   where
-    mask 0 = [-1.0, 0.0]
-    mask _ = [0.0, -1.0]
+    f n' i' l
+        | n' <= 0 = l
+        | i' == n' = f n'' i' (-1.0 : l)
+        | otherwise = f n'' i' (0.0 : l)
+      where
+        n'' = n' - 1
 
 nudge :: Double -> Matrix Double -> Matrix Double -> Matrix Double
 nudge constant input delta = input + (delta * constant')
