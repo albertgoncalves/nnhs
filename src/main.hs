@@ -3,8 +3,8 @@
 module Main where
 
 import Data.List (nub)
-import Display (accuracy, dispList, model2List)
-import Model (initModel, predict, trainModel)
+import Display (dispList, model2List)
+import Model (accuracy, initModel, predict, trainModel)
 import Numeric.LinearAlgebra (fromLists)
 import Prelude hiding ((<>))
 

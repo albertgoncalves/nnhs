@@ -35,7 +35,6 @@ trainModel ::
     -> Double
     -> Double
     -> (Matrix Double, Matrix Double, Matrix Double, Matrix Double)
-trainModel 0 model _ _ _ _ = model
 trainModel n model trainX trainY regLambda epsilon
     | n > 0 = trainModel (n - 1) model' trainX trainY regLambda epsilon
     | otherwise = model'
@@ -51,3 +50,13 @@ predict model testX = predictY
   where
     (probs, _) = fwdProp model testX
     predictY = rowMax probs
+
+accuracy :: [Int] -> [Int] -> Float
+accuracy x y = sum z / fromIntegral (length z)
+  where
+    z = zipWith score x y
+
+score :: Int -> Int -> Float
+score a b
+    | a == b = 1.0
+    | otherwise = 0.0
