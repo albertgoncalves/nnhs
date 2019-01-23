@@ -3,7 +3,7 @@
 module Model where
 
 import Math (rowMax)
-import Numeric.LinearAlgebra
+import Numeric.LinearAlgebra (Matrix, Seed, (><), uniformSample)
 import Propagate (backProp, fwdProp)
 
 initModel ::

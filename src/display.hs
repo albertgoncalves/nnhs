@@ -2,7 +2,7 @@
 
 module Display where
 
-import Numeric.LinearAlgebra
+import Numeric.LinearAlgebra (Matrix, disp)
 
 model2List ::
        (Matrix Double, Matrix Double, Matrix Double, Matrix Double)

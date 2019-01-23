@@ -3,6 +3,15 @@
 module Math where
 
 import Numeric.LinearAlgebra
+    ( Matrix
+    , Numeric
+    , (<>)
+    , (><)
+    , cols
+    , maxIndex
+    , rows
+    , toRows
+    )
 import Prelude hiding ((<>))
 
 sumRows :: (Numeric t, Enum t) => Matrix t -> Matrix t

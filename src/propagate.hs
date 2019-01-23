@@ -3,7 +3,7 @@
 module Propagate where
 
 import Math (sumCols, sumRows)
-import Numeric.LinearAlgebra
+import Numeric.LinearAlgebra (Matrix, (<>), (><), fromLists, tr)
 import Prelude hiding ((<>))
 
 fwdProp ::
