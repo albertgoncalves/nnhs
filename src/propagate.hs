@@ -43,11 +43,10 @@ backProp (w1, w2, b1, b2) trainX trainY (probs, a1) regLambda epsilon = model
     model = (w1', w2', b1', b2')
 
 correction :: Matrix Double -> [Int] -> Matrix Double
-correction p y = p + fromLists (map f y)
+correction p y = p + fromLists (map mask y)
   where
-    f 0 = [-1.0, 0.0]
-    f 1 = [0.0, -1.0]
-    f _ = []
+    mask 0 = [-1.0, 0.0]
+    mask _ = [0.0, -1.0]
 
 nudge :: Double -> Matrix Double -> Matrix Double -> Matrix Double
 nudge constant input delta = input + (delta * constant')
