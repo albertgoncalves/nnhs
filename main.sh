@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-runghc -isrc src/main.hs
+runghc -isrc src/Main.hs
