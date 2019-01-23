@@ -1,4 +1,6 @@
 *
+!src
 !.gitignore
 !shell.nix
+!main.sh
 !*.hs
