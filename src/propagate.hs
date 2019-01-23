@@ -2,7 +2,7 @@
 
 module Propagate where
 
-import Math
+import Math (sumCols, sumRows)
 import Numeric.LinearAlgebra
 import Prelude hiding ((<>))
 

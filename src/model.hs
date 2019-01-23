@@ -2,9 +2,9 @@
 
 module Model where
 
-import Math
+import Math (rowMax)
 import Numeric.LinearAlgebra
-import Propagate
+import Propagate (backProp, fwdProp)
 
 initModel ::
        Seed
@@ -35,12 +35,13 @@ trainModel ::
     -> Double
     -> Double
     -> (Matrix Double, Matrix Double, Matrix Double, Matrix Double)
+trainModel 0 model _ _ _ _ = model
 trainModel n model trainX trainY regLambda epsilon
     | n > 0 = trainModel (n - 1) model' trainX trainY regLambda epsilon
     | otherwise = model'
   where
-    fwdProp' = fwdProp model trainX
-    model' = backProp model trainX trainY fwdProp' regLambda epsilon
+    model' =
+        backProp model trainX trainY (fwdProp model trainX) regLambda epsilon
 
 predict ::
        (Matrix Double, Matrix Double, Matrix Double, Matrix Double)
