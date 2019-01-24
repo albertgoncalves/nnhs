@@ -1,7 +1,9 @@
 *
+!examples
 !.gitignore
 !shell.nix
 !README.md
 !main.sh
 !src
 !*.hs
+!input.txt
