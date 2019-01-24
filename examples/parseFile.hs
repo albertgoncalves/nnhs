@@ -4,15 +4,18 @@ import Control.Monad (join)
 import Data.Maybe (maybeToList)
 import Text.Read (readMaybe)
 
-parseData :: String -> Maybe ([Double], Int)
+parseData :: String -> Maybe (Int, [Double])
 parseData x =
     case x' of
-        [Just a, Just b, Just c] -> Just ([a, b], floor c)
+        (Just a:b) ->
+            case sequenceA b of
+                Just b' -> Just (floor a, b')
+                _ -> Nothing
         _ -> Nothing
   where
     x' = map readMaybe (words x) :: [Maybe Double]
 
-fmtData :: String -> [([Double], Int)]
+fmtData :: String -> [(Int, [Double])]
 fmtData = join . map (maybeToList . parseData) . lines
 
 main :: IO ()
