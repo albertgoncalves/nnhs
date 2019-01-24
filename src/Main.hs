@@ -48,12 +48,12 @@ main = do
     let (trainY, trainX) = unzip train
     let (testY, testX) = unzip test
     let nInput = length $ head trainX
-    let nHidden = 3
+    let nHidden = 10
     let nOutput = length $ nub trainY
-    let regLambda = 0.01
-    let epsilon = 0.01
-    let n = 100
-    let s = 1
+    let regLambda = 0.001
+    let epsilon = 0.001
+    let n = 1000
+    let s = 2
     let model =
             trainModel
                 n

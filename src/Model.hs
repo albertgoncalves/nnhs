@@ -15,7 +15,7 @@ initModel ::
 initModel a nInput nHidden nOutput = (w1, w2, b1, b2)
   where
     w1 = initWeights a nInput nHidden
-    w2 = initWeights (a + 1) nHidden nOutput
+    w2 = initWeights (a + 1000) nHidden nOutput
     b1 = initZeros nHidden
     b2 = initZeros nOutput
 
@@ -41,7 +41,14 @@ trainModel n model trainX nOutput trainY regLambda epsilon
     | otherwise = model'
   where
     model' =
-        backProp model trainX nOutput trainY (fwdProp model trainX) regLambda epsilon
+        backProp
+            model
+            trainX
+            nOutput
+            trainY
+            (fwdProp model trainX)
+            regLambda
+            epsilon
 
 predict ::
        (Matrix Double, Matrix Double, Matrix Double, Matrix Double)
