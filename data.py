@@ -7,9 +7,9 @@ import sklearn.datasets
 if __name__ == "__main__":
     params = \
         { "n_samples": 1000
-        , "n_features": 5
+        , "n_features": 6
         , "n_informative": 2
-        , "n_redundant": 1
+        , "n_redundant": 2
         , "n_repeated": 1
         , "n_classes": 2
         , "n_clusters_per_class": 2

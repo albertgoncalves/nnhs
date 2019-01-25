@@ -8,5 +8,5 @@
 !input
 !*.hs
 !*.sh
-!*.txt
+!params.txt
 !*.py
