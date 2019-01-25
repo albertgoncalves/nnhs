@@ -15,7 +15,7 @@ if __name__ == "__main__":
         , "n_clusters_per_class": 2
         , "random_state": 2
         }
-    fn = "input/data.txt"
+    fn = "data.txt"
 
     data = sklearn.datasets.make_classification(**params)
     data = list(map(pd.DataFrame, reversed(list(data))))

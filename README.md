@@ -15,7 +15,7 @@ $ nix-shell
 
 Take the wheel
 ---
-Data generation is handled by `data.py` by way of [sklearn.datasets.make_classication](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html).
+Data generation is handled by `input/data.py` by way of [sklearn.datasets.make_classication](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.make_classification.html).
 
 ```python
 params = \

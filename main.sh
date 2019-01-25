@@ -2,9 +2,13 @@
 
 set -e
 
-data="input/data.txt"
-params="input/params.txt"
+dir="input"
+data="$dir/data.txt"
+params="$dir/params.txt"
 
+cd $dir
 python data.py
+cd ../
+
 ghc -isrc src/Main.hs
 ./src/Main <<< "$data $params"
