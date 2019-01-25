@@ -1,21 +1,34 @@
 {-# OPTIONS_GHC -Wall #-}
 
 import Control.Monad (join)
-import Data.Maybe (maybeToList)
+import Data.Maybe (fromMaybe, maybeToList)
 import Text.Read (readMaybe)
+
+maybeDouble :: String -> Maybe [Double]
+maybeDouble = traverse readMaybe . words
+
+stringToList :: (String -> Maybe a) -> String -> [a]
+stringToList f = join . map (maybeToList . f) . lines
 
 parseData :: String -> Maybe (Int, [Double])
 parseData x =
-    case traverse readMaybe $ words x of
+    case maybeDouble x of
         Just (a:b) -> Just (floor a, b)
         _ -> Nothing
 
-fmtData :: String -> [(Int, [Double])]
-fmtData = join . map (maybeToList . parseData) . lines
+parseParams :: String -> Maybe (Int, Double, Double, Int, Int)
+parseParams x =
+    case maybeDouble x of
+        Just [a, b, c, d, e] -> Just (floor a, b, c, floor d, floor e)
+        _ -> Nothing
+
+defaultParams :: (Int, Double, Double, Int, Int)
+defaultParams = (10, 0.01, 0.01, 1000, 1)
 
 main :: IO ()
 main = do
-    [fn_data, fn_params] <- words <$> getLine
-    print fn_params
-    contents <- readFile fn_data
-    print $ fmtData contents
+    [dataFile, paramsFile] <- words <$> getLine
+    dataRaw <- readFile dataFile
+    print $ stringToList parseData dataRaw
+    params <- readFile paramsFile
+    print $ fromMaybe defaultParams $ parseParams params

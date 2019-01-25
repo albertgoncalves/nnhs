@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-runghc -isrc src/Main.hs
+data=$1
+params=$2
+
+runghc -isrc src/Main.hs <<< "$data $params"
