@@ -15,5 +15,7 @@ fmtData = join . map (maybeToList . parseData) . lines
 
 main :: IO ()
 main = do
-    contents <- readFile "input.txt"
+    [fn_data, fn_params] <- words <$> getLine
+    print fn_params
+    contents <- readFile fn_data
     print $ fmtData contents

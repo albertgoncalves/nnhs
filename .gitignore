@@ -6,4 +6,5 @@
 !main.sh
 !src
 !*.hs
+!*.sh
 !input.txt
