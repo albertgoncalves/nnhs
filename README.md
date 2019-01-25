@@ -10,5 +10,5 @@ What to do
 ---
 ```bash
 $ nix-shell
-[nix-shell:~/nnhs]$ sh main.sh
+[nix-shell:~/nnhs]$ sh main.sh src/data.txt src/params.txt
 ```
