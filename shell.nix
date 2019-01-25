@@ -8,10 +8,14 @@ with pkgs; mkShell {
                     haskellPackages.hindent
                     libiconv
                     python36
+                    python36Packages.numpy
                     python36Packages.pandas
-                    python36Packages.sklearn-deap
+                    # python36Packages.sklearn-deap
                     python36Packages.flake8
-                  ];
+                  ]
+                  ++ (with python36Packages; [
+                      scikitlearn
+                  ]);
     shellHook = ''
         alias ls='ls --color=auto'
         alias ll='ls -al'
