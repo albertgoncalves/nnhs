@@ -39,4 +39,5 @@ main = do
                 epsilon
     dispList 3 $ model2List model
     let predictY = predict model (fromLists testX)
+    mapM_ print [trainY, predictY]
     print $ accuracy testY predictY
