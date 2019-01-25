@@ -5,6 +5,7 @@
 !README.md
 !main.sh
 !src
+!input
 !*.hs
 !*.sh
 !*.txt
