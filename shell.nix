@@ -18,8 +18,11 @@ with pkgs; mkShell {
                       scikitlearn # hmm, maybe there is a better way...
                   ]);
     shellHook = ''
-        alias ls='ls --color=auto'
-        alias ll='ls -al'
+        if [ $(uname -s) = "Darwin" ]; then
+            alias ls='ls --color=auto'
+            alias ll='ls -al'
+        fi
+
         alias hlint=hlint -c=never
         alias hindent="hindent --indent-size 4 --sort-imports --line-length 79"
         alias flake8="flake8 --ignore E124,E128,E201,E203,E241,W503"
