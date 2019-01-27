@@ -1,5 +1,5 @@
 *
-!examples
+!ref
 !.gitignore
 !shell.nix
 !README.md
@@ -9,4 +9,5 @@
 !*.hs
 !*.sh
 !params.txt
+!ref/data.txt
 !*.py
