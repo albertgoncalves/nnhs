@@ -10,13 +10,12 @@ with pkgs; mkShell {
                     python36
                     python36Packages.numpy
                     python36Packages.pandas
-                    # python36Packages.sklearn-deap <-- doesn't work on Linux
-                    # python36Packages.scikitlearn <-- ???
+                    python36Packages.scikitlearn
                     python36Packages.flake8
-                  ]
-                  ++ (with python36Packages; [
-                      scikitlearn # hmm, maybe there is a better way...
-                  ]);
+                  ];
+                  # ++ (with python36Packages; [
+                  #     scikitlearn # hmm, maybe there is a better way...
+                  # ]);
     shellHook = ''
         if [ $(uname -s) = "Darwin" ]; then
             alias ls='ls --color=auto'
