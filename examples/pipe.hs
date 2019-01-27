@@ -11,8 +11,9 @@ f |. g = g . f -- alternatively: \x -> g (f x)
 main :: IO ()
 main = do
     let x = 10 :: Int
+    let xx = x - 1
     let f = (+ x)
-    let g = (: iterate f x)
+    let g = (xx :) . iterate f
     let h = x * x
     mapM_ print $
         [x] <**>
