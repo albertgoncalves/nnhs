@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-data=$1
-params=$2
+data="data.txt"
+params="params.txt"
 
 runghc parseData.hs <<< "$data $params"

@@ -28,7 +28,5 @@ defaultParams = (10, 0.01, 0.01, 1000, 1)
 main :: IO ()
 main = do
     [dataFile, paramsFile] <- words <$> getLine
-    dataRaw <- readFile dataFile
-    print $ stringToList parseData dataRaw
-    params <- readFile paramsFile
-    print $ fromMaybe defaultParams $ parseParams params
+    print . stringToList parseData =<< readFile dataFile
+    print . fromMaybe defaultParams . parseParams =<< readFile paramsFile
