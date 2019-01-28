@@ -14,9 +14,6 @@ with pkgs; mkShell {
                     python36Packages.scikitlearn
                     python36Packages.flake8
                   ];
-                  # ++ (with python36Packages; [
-                  #     scikitlearn # hmm, maybe there is a better way...
-                  # ]);
     shellHook = ''
         if [ $(uname -s) = "Darwin" ]; then
             alias ls='ls --color=auto'
