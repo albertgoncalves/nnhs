@@ -11,6 +11,4 @@ readData :: [Maybe Double] -> [Double]
 readData = join . map maybeToList
 
 main :: IO ()
-main = do
-    a <- replicateM 2 $ readData <$> stdin2List
-    print a
+main = print =<< (replicateM 2 $ readData <$> stdin2List)
