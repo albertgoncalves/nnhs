@@ -1,7 +1,6 @@
 {-# OPTIONS_GHC -Wall #-}
 
-import Control.Applicative ((<**>))
-
+-- import Control.Applicative ((<**>))
 (|>) :: a -> (a -> b) -> b
 x |> f = f x
 
@@ -15,8 +14,8 @@ main = do
     let f = (+ x)
     let g = (xx :) . iterate f
     let h = x * x
-    mapM_ print $
-        [x] <**>
+    mapM_
+        (print . ($ x))
         [ \x' -> x' |> f |> g |> take h |> sum -- |
         , f |. g |. take h |. sum --           -- | equivalent expressions
         , sum . take h . g . f --              -- |
