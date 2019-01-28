@@ -34,14 +34,14 @@ backProp (w1, w2, b1, b2) trainX nOutput trainY (probs, a1) regLambda epsilon =
     delta2 = (delta3 <> tr w2) * (1 - (a1 ** 2))
     dw1 = tr trainX <> delta2
     db1 = sumCols delta2
-    fEpsilon = nudge (-epsilon)
-    fLambda = nudge regLambda
-    dw2' = fLambda dw2 w2
-    dw1' = fLambda dw1 w1
-    w1' = fEpsilon w1 dw1'
-    w2' = fEpsilon w2 dw2'
-    b1' = fEpsilon b1 db1
-    b2' = fEpsilon b2 db2
+    nudgeEpsilon = nudge (-epsilon)
+    nudgeLambda = nudge regLambda
+    dw2' = nudgeLambda dw2 w2
+    dw1' = nudgeLambda dw1 w1
+    w1' = nudgeEpsilon w1 dw1'
+    w2' = nudgeEpsilon w2 dw2'
+    b1' = nudgeEpsilon b1 db1
+    b2' = nudgeEpsilon b2 db2
     model = (w1', w2', b1', b2')
 
 correction :: Matrix Double -> Int -> [Int] -> Matrix Double
