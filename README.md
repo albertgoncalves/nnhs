@@ -45,7 +45,7 @@ What can go wrong
 At the moment, the program will raise (terse but relatively informative) errors if
 * no data is found or a deliberately empty dataset is generated
 * the number of observations held for the training dataset results in an empty testing data set (or, however unlikely, the inverse occurs)
-* hidden layers is set to 0
+* hidden layers is set to anything less than 1
 
 If there are any problems parsing `params.txt` the program will silently revert to a default set of parameters. This is not the best behavior, merely the *current* behavior.
 
