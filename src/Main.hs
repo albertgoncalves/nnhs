@@ -9,6 +9,18 @@ import Model (accuracy, initModel, predict, trainModel)
 import Numeric.LinearAlgebra (fromLists)
 import Parse (defaultParams, parseData, parseParams, stringToList)
 import Prelude hiding ((<>))
+import Text.Printf
+
+errorSplit :: Int -> [a] -> ([a], [a])
+errorSplit i x
+    | lenA == 0 = error $ msg "training"
+    | lenB == 0 = error $ msg "testing"
+    | otherwise = (a, b)
+  where
+    (a, b) = splitAt i x
+    lenA = length a
+    lenB = length b
+    msg = printf "Splitting data at %d results in zero %s observations.\n" i
 
 main :: IO ()
 main = do
@@ -16,6 +28,10 @@ main = do
     dataRaw <- readFile dataFile
     params <- readFile paramsFile
     let testData = stringToList parseData dataRaw
+    let lenData = length testData
+    if lenData == 0
+        then error $ printf "No data found at '%s'.\n" dataFile
+        else printf "%d observations loaded.\n" lenData
     let (nHidden, regLambda, epsilon, n, splitIndex, seed) =
             fromMaybe defaultParams $ parseParams params :: ( Int
                                                             , Double
@@ -23,7 +39,10 @@ main = do
                                                             , Int
                                                             , Int
                                                             , Int)
-    let (train, test) = splitAt splitIndex testData
+    if nHidden < 1
+        then error $ printf "Number of hidden layers must be greater than 0.\n"
+        else printf "Training with %d hidden layers.\n" nHidden
+    let (train, test) = errorSplit splitIndex testData
     let (trainY, trainX) = unzip train
     let (testY, testX) = unzip test
     let nInput = length $ head trainX

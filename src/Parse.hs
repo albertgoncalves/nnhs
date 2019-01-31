@@ -3,20 +3,19 @@
 module Parse where
 
 import Control.Monad (join)
-import Data.Maybe (maybeToList)
 import Text.Read (readMaybe)
 
 maybeDouble :: String -> Maybe [Double]
 maybeDouble = traverse readMaybe . words
 
-stringToList :: (String -> Maybe a) -> String -> [a]
-stringToList f = join . map (maybeToList . f) . lines
+stringToList :: (String -> [a]) -> String -> [a]
+stringToList f = join . map f . lines
 
-parseData :: String -> Maybe (Int, [Double])
+parseData :: String -> [(Int, [Double])]
 parseData x =
     case maybeDouble x of
-        Just (a:b) -> Just (floor a, b)
-        _ -> Nothing
+        Just (a:b) -> [(floor a, b)]
+        _ -> []
 
 parseParams :: String -> Maybe (Int, Double, Double, Int, Int, Int)
 parseParams x =
