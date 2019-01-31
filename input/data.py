@@ -6,7 +6,7 @@ import sklearn.datasets
 
 if __name__ == "__main__":
     params = \
-        { "n_samples": 150
+        { "n_samples": 1000
         , "n_features": 2
         , "n_informative": 2
         , "n_redundant": 0

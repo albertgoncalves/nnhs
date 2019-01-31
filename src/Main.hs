@@ -13,13 +13,11 @@ import Text.Printf
 
 errorSplit :: Int -> [a] -> ([a], [a])
 errorSplit i x
-    | lenA == 0 = error $ msg "training"
-    | lenB == 0 = error $ msg "testing"
+    | length a == 0 = error $ msg "training"
+    | length b == 0 = error $ msg "testing"
     | otherwise = (a, b)
   where
     (a, b) = splitAt i x
-    lenA = length a
-    lenB = length b
     msg = printf "Splitting data at %d results in zero %s observations.\n" i
 
 main :: IO ()
