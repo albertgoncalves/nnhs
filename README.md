@@ -39,3 +39,14 @@ Model parameters are controlled over at `input/params.txt`.
 50      number of observations in training dataset
 2       random seed
 ```
+
+What can go wrong
+---
+At the moment, the program will raise (terse but relatively informative) errors if
+* no data is found or a deliberately empty dataset is generated
+* the number of observations held for the training dataset results in an empty testing data set (or, however unlikely, the inverse occurs)
+* hidden layers is set to 0
+
+If there are any problems parsing `params.txt` the program will silently revert to a default set of parameters. This is not the best behavior, merely the *current* behavior.
+
+The data generation via **Python** will crash as it sees fit if the `sklearn.datasets.make_classification` parameters are not set correctly.
