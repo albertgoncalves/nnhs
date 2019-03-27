@@ -1,19 +1,21 @@
 { pkgs ? import <nixpkgs> {} }:
 with pkgs; mkShell {
     name = "Haskell";
-    buildInputs = [ (haskell.packages.ghc844.ghcWithPackages (pkgs: [
-                        pkgs.hmatrix
-                        pkgs.hoogle
-                    ]))
-                    haskellPackages.hlint
-                    haskellPackages.hindent
-                    libiconv
-                    python36
-                    python36Packages.numpy
-                    python36Packages.pandas
-                    python36Packages.scikitlearn
-                    python36Packages.flake8
-                  ];
+    buildInputs = [
+        libiconv
+        (haskell.packages.ghc864.ghcWithPackages (pkgs: [
+            pkgs.hmatrix
+            pkgs.hoogle
+            pkgs.hlint
+            pkgs.hindent
+        ]))
+        (python37.withPackages(ps: with ps; [
+            numpy
+            pandas
+            scikitlearn
+            flake8
+        ]))
+    ];
     shellHook = ''
         if [ $(uname -s) = "Darwin" ]; then
             alias ls='ls --color=auto'
