@@ -10,7 +10,7 @@ What to do
 ---
 ```bash
 $ nix-shell
-[nix-shell:~/nnhs]$ sh main.sh
+[nix-shell:path/to/nnhs]$ sh main.sh
 ```
 
 Take the wheel
